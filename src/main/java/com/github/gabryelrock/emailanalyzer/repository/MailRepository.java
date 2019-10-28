@@ -28,34 +28,5 @@ public class MailRepository {
 
         influxDB.write(point);
     }
-
-    public  void conenct() {
-
-        InfluxDB influxDB = InfluxDBFactory.connect("http://localhost:8086", "admin", "admin");
-        influxDB.setDatabase("mydb");
-
-        long leftLimit = 1L;
-        long rightLimit = 10L;
-        int cont = 300;
-
-
-        while (true){
-            Point point = Point.measurement("cpu")
-                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                    .addField("idle", leftLimit + (long) (Math.random() * (rightLimit - leftLimit)))
-                    .addField("user", leftLimit + (long) (Math.random() * (rightLimit - leftLimit)))
-                    .addField("system", leftLimit + (long) (Math.random() * (rightLimit - leftLimit)))
-                    .build();
-
-
-            influxDB.write(point);
-
-            influxDB.write(Point.measurement("disk")
-                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                    .addField("used", leftLimit + (long) (Math.random() * (rightLimit - leftLimit)))
-                    .addField("free", leftLimit + (long) (Math.random() * (rightLimit - leftLimit)))
-                    .build());
-        }
-
-    }
+    
 }

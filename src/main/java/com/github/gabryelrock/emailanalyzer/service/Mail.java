@@ -84,11 +84,6 @@ public class Mail {
                             .dateReceived(msg.getReceivedDate())
                             .build();
 
-                    System.out.println("Subject: " + msg.getSubject());
-                    System.out.println("From: " + msg.getFrom()[0]);
-                    System.out.println("To: " + msg.getAllRecipients()[0]);
-                    System.out.println("Date: " + msg.getReceivedDate());
-
                     listOfEmailsReceived.add(email);
                     msg.setFlag(Flags.Flag.SEEN, true);
                 }
